@@ -1,11 +1,11 @@
-import { expect } from 'chai';
+var should = require('chai').should();
 import WebLogin from '../src/index';
 
 describe('WebLogin', () => {
 
   it('should instantiate', () => {
     const webLogin = new WebLogin();
-    expect(webLogin.shouldSend()).to.be.false();
+    webLogin.shouldSend().should.be.false;
   });
 
 });

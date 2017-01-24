@@ -7,7 +7,13 @@
   "repository": "deckardai/electron-weblogin",
   "author": "Aurélien Nicolas <aurle@deckard.ai>",
   "license": "MIT",
-  "keywords": ["electron", "login", "authentication", "web", "webbrowser"],
+  "keywords": [
+    "electron",
+    "login",
+    "authentication",
+    "web",
+    "webbrowser"
+  ],
   "main": "index.js",
   "jsnext:main": "index.es.js",
   "babel": {
@@ -41,6 +47,8 @@
     "eslint-config-airbnb-base": "^10.0.1",
     "eslint-plugin-import": "^2.2.0",
     "istanbul": "^1.1.0-alpha.1",
+    "jsdom": "9.9.1",
+    "jsdom-global": "2.1.1",
     "mocha": "^3.1.2",
     "rollup": "^0.36.3",
     "rollup-plugin-babel": "^2.6.1",
@@ -48,8 +56,8 @@
   },
   "scripts": {
     "lint": "eslint src test tools",
-    "test": "mocha --compilers js:babel-register",
-    "test:watch": "mocha --compilers js:babel-register --reporter min --watch",
+    "test": "mocha --compilers js:babel-register -r jsdom-global/register",
+    "test:watch": "mocha --compilers js:babel-register -r jsdom-global/register --reporter min --watch",
     "test:cover": "babel-node ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "build": "node tools/build",
