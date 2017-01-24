@@ -1,11 +1,17 @@
-// Login in webbrowser authenticates Electron as well
-//
-// Author: Aurélien Nicolas <aurel@deckard.ai>
+/**
+ * Login in webbrowser authenticates Electron as well.
+ *
+ * Copyright © 2017 Aurélien Nicolas
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 
 
 export default class WebLogin {
 
   constructor(opts) {
+    opts = opts || {}
     this.opts = opts
     this.port = opts.port || 33874
     this.protoVersion = "1"
