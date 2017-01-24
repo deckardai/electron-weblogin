@@ -20,9 +20,7 @@
       "latest",
       "stage-0"
     ],
-    "plugins": [
-      "transform-runtime"
-    ]
+    "plugins": []
   },
   "eslintConfig": {
     "parser": "babel-eslint",
