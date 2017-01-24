@@ -1,6 +1,6 @@
 {
   "name": "electron-weblogin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Login to an electron app using the webbrowser accounts. Avoid unnecessary password prompts.",
   "homepage": "https://github.com/deckardai/electron-weblogin",
   "repository": "deckardai/electron-weblogin",
