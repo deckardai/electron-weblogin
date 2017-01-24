@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!-- Copyright (c) 2017-present, Deckard.AI GmbH.
+     MIT License.
+-->
+<html>
+
+<head>
+
+    <title>Electron WebLogin</title>
+
+    <style>
+      body {
+        background-color: lightgrey;
+        margin:10%;
+        text-align:center;
+      }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="login">
+        <h2>Example Login Page</h2>
+
+        <p><input id="name" type="text" value="My Name"></p>
+        <p>You can login on the web with your existing accounts.</p>
+        <p>You will be authenticated in the desktop app with the same account.</p>
+        <p><button onclick="doComplicatedLogin()">Login with password, Facebook, Google, and what not</button></p>
+    </div>
+
+    <div id="app" style="display:none;">
+        <h2>Hello <span id="hello"></span>.</h2>
+
+        <p>You are now authenticated.</p>
+        <p><button onclick="location.reload()">Start over</button></p>
+    </div>
+
+
+    <script src="dist/index.umd.js"></script>
+    <script>
+
+      // This is an example login logic.
+
+      /** The goal: start the app with the authenticated user */
+      function goToCoolApp(myCredentials) {
+        // Say hi
+        document.getElementById("hello").innerText = myCredentials.name;
+        document.getElementById("login").style.display = "none";
+        document.getElementById("app").style.display = "block";
+      }
+
+      /** Perform your login process, with password, OAuth, cookies, what have you.
+        * The user can login in either one.
+        */
+      function doComplicatedLogin() {
+        var myCredentials = { name: document.getElementById("name").value };
+
+        // Webbrowser forwards to Electron, if requested
+        webLogin.sendToElectron(myCredentials);
+
+        goToCoolApp(myCredentials);
+      }
+
+
+      // WebLogin integration
+      //
+      // You can use the exact same code in Electron and in the webbrowser.
+      // All methods detect it and act as appropriate, or do nothing.
+
+      var webLogin = new WebLogin({
+        // The web login URL. Default to the same as for Electron.
+        url: window.location.href,
+      })
+
+      // Wait for credentials from the webbrowser
+      webLogin.listenFromDesktop(function (myCredentials) {
+        // Focus the electron window so the user sees the success and next step
+        webLogin.showDesktopWindow();
+
+        goToCoolApp(myCredentials);
+      })
+
+      // Show a button in the top right corner to open the browser
+      webLogin.showExternalButton();
+
+      // Or open the browser automatically
+      webLogin.openExternalLogin();
+
+    </script>
+
+</body>
+
+</html>
