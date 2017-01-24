@@ -1,5 +1,4 @@
 {
-  "private": true,
   "name": "electron-weblogin",
   "version": "0.1.0",
   "description": "Login to an electron app using the webbrowser accounts. Avoid unnecessary password prompts.",
